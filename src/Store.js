@@ -3,20 +3,23 @@ const { createStore } = require('redux')
 //  2. Reducer => Function , logic buat mengubah data
 //  3. Action => object, Perintah untuk mengubah data
 const reducer = (state = 0, action) => {
-    if(action.type == 'INCREMENT'){
-        return state + 1
-    }else{
-        return state
+    switch (action.type){
+        case 'INCREMENT' :
+            return state + 1
+            break;
+        case 'DECREMENT' :
+            return state - 1
+            break;
+        default:
+            return state
     }
-    return state
 }
 
 const store = createStore(reducer)
+const increment = { type: 'INCREMENT'}
+const decrement = { type: 'DECREMENT'}
 
-//Dispatch Action
-store.dispatch({
-    type : 'INCREMENT'
-})
+store.dispatch(decrement)
 
 const state = store.getState()
 
